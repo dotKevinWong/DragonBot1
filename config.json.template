@@ -8,7 +8,7 @@
     "WELCOME_CHANNEL_ID": "",
     "MEMBER_JOIN_MESSAGE": "",
     "EMAIL_REGEX": ".*@.*",
-    "SMPT_JS_LOGIN_TOKEN": "",
+    "SMTP_JS_LOGIN_TOKEN": "",
     "CRYPTO_JSON_ALGORITHM": "aes256",
     "CRYPTO_JSON_ENCODING": "hex",
     "CRYPTO_JSON_MEMBER_ENCRYPT_KEY": ""
