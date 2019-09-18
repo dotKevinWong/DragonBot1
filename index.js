@@ -42,7 +42,7 @@ client.on('message', message => {
       message.author
         .createDM()
         .then(dmchannel =>
-          dmchannel.send('Reply with your email for verification').catch(reason => console.log(reason))
+          dmchannel.send('Please reply with your Drexel E-Mail for Verification').catch(reason => console.log(reason))
         )
         .catch(reason => console.log(reason))
     } else if (message.type === 'GUILD_MEMBER_JOIN') {
@@ -53,16 +53,19 @@ client.on('message', message => {
   } else if (message.channel.guild == null) {
     if (new RegExp(CONFIG.EMAIL_REGEX).test(text)) {
       let email_address = text
-      let code = makeid(6)
-      code_email_temp.set(code, email_address, 10 * 60 * 1000)
-      code_discord_temp.set(code, message.author.id, 10 * 60 * 1000)
-      sendEmail(email_address, code)
-      .then(
-        message.channel
-        .send(MESSAGE_PREFIX + 'Check your email now! Reply with the code we sent you')
-        .catch(reason => console.log(reason))
-        )
-      .catch(reason => console.log(reason))
+      if (email_address) {
+        let code = makeid(6)
+        code_email_temp.set(code, email_address, 10 * 60 * 1000)
+        code_discord_temp.set(code, message.author.id, 10 * 60 * 1000)
+        sendEmail(email_address, code)
+          .then(
+            message.channel
+              .send(MESSAGE_PREFIX + 'Check your email now! Reply with the code we sent you! It may be in your JUNK folder')
+              .catch(reason => console.log(reason))
+          )
+          .catch(reason => console.log(reason))
+      } else { 
+        message.channel.send(MESSAGE_PREFIX + CONFIG.MEMBER_JOIN_MESSAGE).catch(reason => console.log(reason))
       }
     } else if (text.match(/^[a-zA-Z0-9]{6}$/)) {
       Promise.all([code_email_temp.get(text), code_discord_temp.get(text)])
@@ -85,7 +88,8 @@ client.on('message', message => {
         })
         .catch(reason => console.log(reason))
     }
-  })
+  }
+})
 
 isMember = email_address => MEMBERS.indexOf(email_address.toLowerCase()) > -1
 
