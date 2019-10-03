@@ -27,14 +27,37 @@ const ALPHANUM = '0123456789'
 code_discord_temp.clear()
 code_email_temp.clear()
 
+// Conolse Log Startup of Bot
 client.once('ready', () => console.log('Starting!'))
 
+client.login(CONFIG.DISCORD_LOGIN_API_TOKEN).then(console.log('Logged In!'))
+
+// Discord Rich Presence
 client.on("ready", () => {
     client.user.setActivity("with Shafted Machines", { type: "PLAYING" })
 })
 
-client.login(CONFIG.DISCORD_LOGIN_API_TOKEN).then(console.log('Logged In!'))
+// Welcome DM User
+// client.on('guildMemberAdd', member => {
+   // member.send("Welcome to the **Unofficial Drexel University Discord Server!** " + "In ***#bot-commands***, please type !verify to verify yourself! Under ***#add-roles-here***, make sure to add your Major and Class Year!");
+// });
 
+client.on('message', message => {
+    if (message.content === '!offtopic') {
+        message.channel.send( {embed : {
+            color : 16777215,
+            title : "The Conversation is Off-Topic",
+            description : "Please move off topic conversation to [#random](https://discordapp.com/channels/323942271550750720/493532569657278476) or appropriate channel",
+            image : {
+                url: "https://media.giphy.com/media/ZxnjsVdq2udVUK8uaf/giphy.gif"
+            },
+            footer : {
+                text: "Requested by " +message.author.username,
+                icon_url: client.user.avatarURL
+            }
+}})}});
+
+// User Verification 
 client.on('message', message => {
   if (message.author.bot) {
     return
@@ -64,7 +87,7 @@ client.on('message', message => {
         sendEmail(email_address, code)
           .then(
             message.channel
-              .send(MESSAGE_PREFIX + 'Check your email now! Reply with the code we sent you! It may be in your JUNK folder')
+              .send(MESSAGE_PREFIX + 'Please check your email and reply with the code we sent you! It may be in your **JUNK** or **SPAM<** folder')
               .catch(reason => console.log(reason))
           )
           .catch(reason => console.log(reason))
@@ -83,11 +106,11 @@ client.on('message', message => {
               .then(member =>
                 member
                   .addRole(role)
-                  .then(message.channel.send('You are now verified!').catch(reason => console.log(reason)))
+                  .then(message.channel.send('You are now **verified!**').catch(reason => console.log(reason)))
               )
               .catch(reason => console.log(reason))
           } else {
-            message.channel.send(MESSAGE_PREFIX + "That code isn't right")
+            message.channel.send(MESSAGE_PREFIX + "That code isn't right. Please make sure you have the right code.")
           }
         })
         .catch(reason => console.log(reason))
@@ -97,6 +120,7 @@ client.on('message', message => {
 
 isMember = email_address => MEMBERS.indexOf(email_address.toLowerCase()) > -1
 
+// STMPJS E-Mail
 // https://www.smtpjs.com/
 sendEmail = (email_address, code) =>
   Email.send({
