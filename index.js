@@ -29,6 +29,10 @@ code_email_temp.clear()
 
 client.once('ready', () => console.log('Starting!'))
 
+client.on("ready", () => {
+    client.user.setActivity("with Shafted Machines", { type: "PLAYING" })
+})
+
 client.login(CONFIG.DISCORD_LOGIN_API_TOKEN).then(console.log('Logged In!'))
 
 client.on('message', message => {
