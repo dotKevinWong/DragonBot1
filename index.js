@@ -44,18 +44,59 @@ client.on("ready", () => {
 
 client.on('message', message => {
     if (message.content === '!offtopic') {
-        message.channel.send( {embed : {
-            color : 16777215,
-            title : "The Conversation is Off-Topic",
-            description : "Please move off topic conversation to [#random](https://discordapp.com/channels/323942271550750720/493532569657278476) or appropriate channel",
-            image : {
-                url: "https://media.giphy.com/media/ZxnjsVdq2udVUK8uaf/giphy.gif"
-            },
-            footer : {
-                text: "Requested by " +message.author.username,
-                icon_url: client.user.avatarURL
+        message.delete(1000)
+        message.channel.send ( {
+            embed : {
+                color : 16777215,
+                title : "The Conversation is Off-Topic",
+                description : "Please move off topic conversation to [#random](https://discordapp.com/channels/323942271550750720/493532569657278476) or appropriate channel",
+                image : {
+                    url: "https://media.giphy.com/media/ZxnjsVdq2udVUK8uaf/giphy.gif"
+                },
+                footer : {
+                    text: "Requested by " +message.author.username,
+                    icon_url: client.user.avatarURL
+                }
             }
-}})}});
+        }
+                             )
+            .then(msg => {
+            msg.delete(30000)
+        }
+                 )
+    }
+    if (message.content === '!dragonbot') {
+        message.delete(1000)
+        message.channel.send ( {
+            embed : {
+                color : 16777215,
+                title : "Hello, I'm DragonBot",
+                description : "I'm a bot built for the Drexel Discord Server. Fork Me on [GitHub](https://github.com/dotKevinWong/DragonBot/). Find out what I can do below:",
+                fields : [
+                    {
+                        name : 'Verify Users',
+                        value : 'I handle all user verifications to make sure our users are actual Drexel Students!',
+                    },
+                    {
+                        name : 'Moderate Chat',
+                        value : "If a chat is becoming off-topic, request the !offtopic command and I\'ll help moderate the chat",
+                    },
+                    {
+                        name : '+ More Features',
+                        value : "I'm continually adding features, just mention @KevinWong#0001 if you want something added",
+                    },
+                    
+                ],
+            }
+        }
+                             )
+            .then(msg => {
+            msg.delete(120000)
+        }
+                 )
+    }
+}
+         );
 
 // User Verification 
 client.on('message', message => {
@@ -87,7 +128,7 @@ client.on('message', message => {
         sendEmail(email_address, code)
           .then(
             message.channel
-              .send(MESSAGE_PREFIX + 'Please check your email and reply with the code we sent you! It may be in your **JUNK** or **SPAM<** folder')
+              .send(MESSAGE_PREFIX + 'Please check your email and reply with the code we sent you! It may be in your **JUNK** or **SPAM** folder')
               .catch(reason => console.log(reason))
           )
           .catch(reason => console.log(reason))
