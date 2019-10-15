@@ -1,17 +1,17 @@
 const CONFIG = process.env.DISCORD_LOGIN_API_TOKEN == undefined ? require('./config.json') : process.env
 
-const cryptoJSON = require('crypto-json')
+// const cryptoJSON = require('crypto-json')
 
-const ENCRYPTED_MEMBERS = require('./members.json')
+// const ENCRYPTED_MEMBERS = require('./members.json')
 
-const MEMBERS =
-  (CONFIG.CRYPTO_JSON_MEMBER_ENCRYPT_KEY != undefined
-    ? cryptoJSON.decrypt(ENCRYPTED_MEMBERS, CONFIG.CRYPTO_JSON_MEMBER_ENCRYPT_KEY, {
-      encoding: CONFIG.CRYPTO_JSON_ENCODING,
-      keys: ['members'],
-      algorithm: CONFIG.CRYPTO_JSON_ALGORITHM
-    }).members
-    : ENCRYPTED_MEMBERS.members).map(email => email.toLowerCase())
+// const MEMBERS =
+//  (CONFIG.CRYPTO_JSON_MEMBER_ENCRYPT_KEY != undefined
+//    ? cryptoJSON.decrypt(ENCRYPTED_MEMBERS, CONFIG.CRYPTO_JSON_MEMBER_ENCRYPT_KEY, {
+//      encoding: CONFIG.CRYPTO_JSON_ENCODING,
+//      keys: ['members'],
+//      algorithm: CONFIG.CRYPTO_JSON_ALGORITHM
+//    }).members
+//    : ENCRYPTED_MEMBERS.members).map(email => email.toLowerCase())
 
 const { Email } = require('./smtp.js')
 
@@ -29,7 +29,6 @@ code_email_temp.clear()
 
 // Conolse Log Startup of Bot
 client.once('ready', () => console.log('Starting!'))
-
 client.login(CONFIG.DISCORD_LOGIN_API_TOKEN).then(console.log('Logged In!'))
 
 // Discord Rich Presence
@@ -38,65 +37,82 @@ client.on("ready", () => {
 })
 
 // Welcome DM User
-// client.on('guildMemberAdd', member => {
-   // member.send("Welcome to the **Unofficial Drexel University Discord Server!** " + "In ***#bot-commands***, please type !verify to verify yourself! Under ***#add-roles-here***, make sure to add your Major and Class Year!");
-// });
+client.on('guildMemberAdd', member => {
+  member.send("Welcome to the **Unofficial Drexel University Discord Server!** " + "In <#493535288661114881>, please type !verify to verify yourself! Under <#578369377607352321>, make sure to add your Major and Class Year!");
+});
 
+// Message Listening
 client.on('message', message => {
-    if (message.content === '!offtopic') {
-        message.delete(1000)
-        message.channel.send ( {
-            embed : {
-                color : 16777215,
-                title : "The Conversation is Off-Topic",
-                description : "Please move off topic conversation to [#random](https://discordapp.com/channels/323942271550750720/493532569657278476) or appropriate channel",
-                image : {
-                    url: "https://media.giphy.com/media/ZxnjsVdq2udVUK8uaf/giphy.gif"
-                },
-                footer : {
-                    text: "Requested by " +message.author.username,
-                    icon_url: client.user.avatarURL
-                }
-            }
+  if (message.content === '!offtopic') {
+    message.delete(1000)
+    message.channel.send ( {
+      embed : {
+        color : 16777215,
+        title : "The Conversation is Off-Topic",
+        description : "Please move off topic conversation to [#random](https://discordapp.com/channels/323942271550750720/493532569657278476) or appropriate channel",
+        image : {
+          url: "https://media1.tenor.com/images/68f72afcab3ef633a9eac5d446864acc/tenor.gif"
+        },
+        footer : {
+          text: "Requested by " +message.author.username,
+          icon_url: client.user.avatarURL
         }
-                             )
-            .then(msg => {
-            msg.delete(30000)
-        }
-                 )
-    }
-    if (message.content === '!dragonbot') {
-        message.delete(1000)
-        message.channel.send ( {
-            embed : {
-                color : 16777215,
-                title : "Hello, I'm DragonBot",
-                description : "I'm a bot built for the Drexel Discord Server. Fork Me on [GitHub](https://github.com/dotKevinWong/DragonBot/). Find out what I can do below:",
-                fields : [
-                    {
-                        name : 'Verify Users',
-                        value : 'I handle all user verifications to make sure our users are actual Drexel Students!',
-                    },
-                    {
-                        name : 'Moderate Chat',
-                        value : "If a chat is becoming off-topic, request the !offtopic command and I\'ll help moderate the chat",
-                    },
-                    {
-                        name : '+ More Features',
-                        value : "I'm continually adding features, just mention @KevinWong#0001 if you want something added",
-                    },
-                    
-                ],
-            }
-        }
-                             )
-            .then(msg => {
-            msg.delete(120000)
-        }
-                 )
-    }
-}
-         );
+      }
+    })
+    .then(msg => {
+      msg.delete(30000)
+    })
+  }
+  if (message.content === '!dragonbot') {
+    message.delete(1000)
+    message.channel.send ( {
+      embed : {
+        color : 16777215,
+        title : "Hello, I'm DragonBot",
+        description : "I'm a bot built for the Drexel Discord Server. Fork Me on [GitHub](https://github.com/dotKevinWong/DragonBot/). Find out what I can do below:",
+        fields : [
+          {
+            name : 'Verify Users',
+            value : 'I handle all user verifications to make sure our users are actual Drexel Students!',
+          },
+          {
+            name : 'Moderate Chat',
+            value : "If a chat is becoming off-topic, request the !offtopic command and I\'ll help moderate the chat",
+          },
+          {
+            name : '+ More Features',
+            value : "I'm continually adding features, just mention @KevinWong#0001 if you want something added",
+          },     
+        ],
+      }
+    })
+    .then(msg => {
+      msg.delete(120000)
+    })
+  }
+  if (message.content === '!membercount') {
+    message.channel.send ( {
+      embed : {
+        color : 16777215,
+        title : "Member Count",
+        fields : [
+          {
+            name : 'Members',
+            value : message.channel.guild.memberCount
+          },
+          {
+            name : 'Humans',
+            value : message.channel.guild.memberCount - message.channel.guild.members.filter(member => member.user.bot).size
+          },
+          {
+            name : 'Bots',
+            value : message.channel.guild.members.filter(member => member.user.bot).size
+          }
+        ],
+      }
+      })
+}});
+
 
 // User Verification 
 client.on('message', message => {
