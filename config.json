@@ -1,0 +1,15 @@
+{
+    "DISCORD_LOGIN_API_TOKEN": "NjIyMTUzMjkwMjEzMjI4NTQ1.XZ5otQ.w25eyTvyEdKHhgUa413Dz96FMfg",
+    "DATABASE_URL": "",
+    "FROM_EMAIL": "noreply@drexeldiscord.com",
+    "EMAIL_SUBJECT": "Discord Verification",
+    "ROLE_NAME": "Verified",
+    "GUILD_ID": "622153895275134978",
+    "WELCOME_CHANNEL_ID": "622154197885779968",
+    "MEMBER_JOIN_MESSAGE": "",
+    "EMAIL_REGEX": ".*@drexel.edu",
+    "SMTP_JS_LOGIN_TOKEN": "673e7829-0984-43ae-9894-ed69b6bb9025",
+    "CRYPTO_JSON_ALGORITHM": "aes256",
+    "CRYPTO_JSON_ENCODING": "hex",
+    "CRYPTO_JSON_MEMBER_ENCRYPT_KEY": "password"
+}

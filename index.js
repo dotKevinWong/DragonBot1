@@ -17,6 +17,7 @@ const { Email } = require('./smtp.js')
 
 const Discord = require('discord.js')
 const client = new Discord.Client()
+const config = require('./config.json')
 
 const Keyv = require('keyv')
 const discord_email = new Keyv(CONFIG.DATABASE_URL, { namespace: 'discord_email' })
@@ -42,6 +43,28 @@ client.on('guildMemberAdd', member => {
 });
 
 // Message Listening
+
+client.on('message', message => {
+	if (message.author.bot) {
+	    return
+	}
+	switch(message){
+
+
+	default:
+		const command = message.content.slice(1);
+		try{
+			let commandFile = require(`./commands/${command}.js`);
+			commandFile.run(client, message, Keyv, config);
+		} catch (err) {
+			console.error(err);
+		}
+	}
+	
+});
+
+/*
+
 client.on('message', message => {
   if (message.content === '!offtopic') {
     message.delete(1000)
@@ -112,7 +135,7 @@ client.on('message', message => {
       }
       })
 }});
-
+*/
 
 // User Verification 
 client.on('message', message => {
