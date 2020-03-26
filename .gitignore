@@ -1,4 +1,4 @@
 /node_modules
 config.json
-config.json.dev
-config.json.prod
+config.json.dev.json
+config.json.prod.json
