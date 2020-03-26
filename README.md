@@ -1,6 +1,8 @@
 # Info
 
-Built on [SMPT.js](https://www.smtpjs.com/), [KeyV](https://github.com/lukechilds/keyv) and [discord.js](https://discord.js.org/#/)
+Built using [Discord.js](https://discord.js.org), [KeyV](https://github.com/lukechilds/keyv), [Cheerio.js](https://cheerio.js.org), [Nightmare](https://github.com/segmentio/nightmare), [Nodelastic](https://github.com/robintan/nodelastic)
+
+Some code based on [seanbudd](https://github.com/seanbudd)/[discord-email-verification](https://github.com/seanbudd/discord-email-verification) bot.
 
 # Setup
 
@@ -15,31 +17,34 @@ Make a copy of config.json.template named config.json. You can alternatively use
 
 ```js
 {
-    "DISCORD_LOGIN_API_TOKEN": "", // https://discordjs.guide/preparations/setting-up-a-bot-application.html#your-token
-    "DATABASE_URL": "", // any database string that keyv https://discordjs.guide/keyv/#installation
-    "FROM_EMAIL": "", // Email you want as a reply to
-    "EMAIL_SUBJECT": "Discord Verification", // Email subject you want
-    "ROLE_NAME": "", // name of the role people get once verified
-    "GUILD_ID": "", // your channel/guild ID
-    "WELCOME_CHANNEL_ID": "", // the welcome channel you want the bot to operate on
-    "MEMBER_JOIN_MESSAGE": "", // the message you want people to receive if they aren't in your members.json
-    "EMAIL_REGEX": ".*@.*", // regex you want to verify emails before sending, could be domain specific
-    "SMPT_JS_LOGIN_TOKEN": "", // https://www.smtpjs.com/
-    // https://www.npmjs.com/package/crypto-json to encrypt member data, optional
-    "CRYPTO_JSON_ALGORITHM": "aes256",
-    "CRYPTO_JSON_ENCODING": "hex",
-    "CRYPTO_JSON_MEMBER_ENCRYPT_KEY": ""
+    "DISCORD_API_TOKEN": "<discordAPIToken>",
+    "SERVER_NAME": "<XYZ> Discord Server",
+    "SERVER_ID": "<guildID>",
+    "VERIFICATION_CHANNEL_ID": "",
+    "MEE6_LEADERBOARD_URL": "https://mee6.xyz/leaderboard/<MEE6_ID>",
+    "MEE6_LEADERBOARD_DESCRIPTION": "These are the top members of the <XYZ> Discord Server",
+    "RICH_PRESCENCE_TYPE": "Watching",
+    "RICH_PRESCENCE_TEXT": "over the Students",
+    "OFFTOPIC_DESCRIPTION": "Please move off topic conversation to [#random](https://discordapp.com/channels/<guidID>/<channelID>) or appropriate channel",
+    "OFFTOPIC_IMAGE_ARRAY": [
+        "https://example.com/gif1.gif",
+        "https://example.com/gif2.gif"
+    ],
+    "ROLE_NAME": "Verified",
+    "EMAIL_REGEX": ".*@.*",
+    "FROM_EMAIL": "noreply@xyz.com",
+    "EMAIL_SUBJECT": "XYZ Verification",
+    "EMAIL_API": "<ELASTIC EMAIL API KEY>",
+    "WELCOME_USER_DM": "Welcome to the **XYZ Discord Server!** In <#ChannelID>, please type !verify to verify yourself! Under <#ChannelID>, make sure to add your Major and Class Year!"
 }
 
 ```
 
-Make a copy of members.json.template named members.json. The value for the members key should contain an array of email addresses of those allowed to join your Discord server
+# Running
 
-# Hosting
+Start the bot by running
 
-start the bot server by running
-
-`>>> node index.js`
+`>>> node bot.js`
 
 or
 

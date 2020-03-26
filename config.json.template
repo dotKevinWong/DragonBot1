@@ -1,15 +1,21 @@
 {
-    "DISCORD_LOGIN_API_TOKEN": "",
-    "DATABASE_URL": "",
-    "FROM_EMAIL": "",
-    "EMAIL_SUBJECT": "Discord Verification",
-    "ROLE_NAME": "",
-    "GUILD_ID": "",
-    "WELCOME_CHANNEL_ID": "",
-    "MEMBER_JOIN_MESSAGE": "",
+    "DISCORD_API_TOKEN": "<discordAPIToken>",
+    "SERVER_NAME": "<XYZ> Discord Server",
+    "SERVER_ID": "<guildID>",
+    "VERIFICATION_CHANNEL_ID": "",
+    "MEE6_LEADERBOARD_URL": "https://mee6.xyz/leaderboard/<MEE6_ID>",
+    "MEE6_LEADERBOARD_DESCRIPTION": "These are the top members of the <XYZ> Discord Server",
+    "RICH_PRESCENCE_TYPE": "Watching",
+    "RICH_PRESCENCE_TEXT": "over the Students",
+    "OFFTOPIC_DESCRIPTION": "Please move off topic conversation to [#random](https://discordapp.com/channels/<guidID>/<channelID>) or appropriate channel",
+    "OFFTOPIC_IMAGE_ARRAY": [
+        "https://example.com/gif1.gif",
+        "https://example.com/gif2.gif"
+    ],
+    "ROLE_NAME": "Verified",
     "EMAIL_REGEX": ".*@.*",
-    "SMTP_JS_LOGIN_TOKEN": "",
-    "CRYPTO_JSON_ALGORITHM": "aes256",
-    "CRYPTO_JSON_ENCODING": "hex",
-    "CRYPTO_JSON_MEMBER_ENCRYPT_KEY": ""
+    "FROM_EMAIL": "noreply@xyz.com",
+    "EMAIL_SUBJECT": "XYZ Verification",
+    "EMAIL_API": "<ELASTIC EMAIL API KEY>",
+    "WELCOME_USER_DM": "Welcome to the **XYZ Discord Server!** In <#ChannelID>, please type !verify to verify yourself! Under <#ChannelID>, make sure to add your Major and Class Year!"
 }

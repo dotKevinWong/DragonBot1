@@ -1,21 +1,20 @@
 {
-  "name": "wired-discord-bot",
+  "name": "dragonbot",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "bot.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npm install . && node index.js"
+    "start": "npm install . && node bot.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@keyv/postgres": "^1.0.16",
-    "crypto-json": "^2.0.2",
+    "cheerio": "^1.0.0-rc.3",
     "discord.js": "^11.4.2",
     "keyv": "^3.1.0",
-    "webpack": "^4.29.6",
-    "xmlhttprequest": "^1.8.0"
+    "nightmare": "^3.0.2",
+    "nodelastic": "^1.0.2"
   }
 }
