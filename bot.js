@@ -18,7 +18,7 @@ client
 	.login(config.DISCORD_API_TOKEN)
 	.then(console.log("Logged In to Discord API!"));
 
-sgMail.setApiKey(config.EMAIL_API);
+sgMail.setApiKey(config.EMAIL_API_KEY);
 
 // discord rich presense
 client.on("ready", () => {
@@ -27,12 +27,13 @@ client.on("ready", () => {
 	});
 });
 
+// DM new user on join
 client.on("guildMemberAdd", member => {
 	member.send(config.WELCOME_USER_DM);
 });
 
 /*
-	LEADERBOARD USING API
+	LEADERBOARD USING MEE6 API
 */
 client.on("message", message => {
 	if (message.content === "!leaderboard") {
@@ -59,61 +60,7 @@ client.on("message", message => {
 	}
 });
 
-/* 
-    LEADERBOARD USING NIGHTMARE
-    - This uses cheerio.js and Nightmare to parse the MEE6 Leaderboard website and returns the result of the top 3 users.
-
-client.on("message", message => {
-	if (message.content === "!leaderboard") {
-		message.channel.send("Fetching...").then(msg => {
-			msg.delete(5000);
-		});
-		const nightmare = Nightmare({ show: false, waitTimeout: 10000 });
-		nightmare
-			.goto(config.MEE6_LEADERBOARD_URL)
-			.wait(".leaderboardContainer")
-			.evaluate(() => document.querySelector(".leaderboardContainer").innerHTML)
-			.end()
-			.then(response => {
-				console.log(getData(response));
-			})
-			.catch(err => {
-				console.log(err);
-			});
-
-		let getData = html => {
-			data = [];
-			const $ = cheerio.load(html);
-			$(".leaderboardPlayer > .leaderboardPlayerLeft").each((i, elem) => {
-				data.push({
-					rank: $(elem)
-						.find(".leaderboardRank")
-						.text(),
-					username: $(elem)
-						.find("div.leaderboardPlayerUsername")
-						.text(),
-					icon: $(elem)
-						.find("div.leaderboardPlayerIcon > img")
-						.attr("src")
-				});
-			});
-			const rankEmbed = new discord.RichEmbed()
-				.setColor("0099ff")
-				.setTitle("Top Members")
-				.setURL(config.MEE6_LEADERBOARD_URL)
-				.setDescription(config.MEE6_LEADERBOARD_DESCRIPTION)
-				.addField(":crown:", "<@" + message.users.fetch(data[0].username) + ">")
-				.addField(":second_place:", data[1].username)
-				.addField(":third_place:", data[2].username)
-				.addField(":four:", data[3].username)
-				.addField(":five:", data[4].username)
-				.setTimestamp();
-			message.channel.send(rankEmbed);
-		};
-	}
-});
-*/
-
+// checks if user has a configured Verified role
 client.on("message", message => {
 	if (message.content === "!vibecheck") {
 		if (message.member.roles.find(role => role.name === config.ROLE_NAME)) {
@@ -239,7 +186,7 @@ client.on("message", message => {
 		});
 		const nightmare = Nightmare({ show: false, waitTimeout: 10000 });
 		nightmare
-			.goto("https://drexel.campuslabs.com/engage/organizations?query=" + query)
+			.goto(config.CAMPUSLABS_URL + "engage/organizations?query=" + query)
 			.wait("#org-search-results")
 			.evaluate(() => document.querySelector("#org-search-results").innerHTML)
 			.end()
@@ -271,7 +218,7 @@ client.on("message", message => {
 				const clubEmbed = new discord.RichEmbed()
 					.setColor("0099ff")
 					.setTitle(data[i].name)
-					.setURL("https://drexel.campuslabs.com" + data[i].link)
+					.setURL(config.CAMPUSLABS_URL + data[i].link)
 					.setDescription(data[i].alt)
 					.setImage(data[i].image)
 					.setTimestamp();
@@ -311,7 +258,7 @@ client.on("message", message => {
 				.createDM()
 				.then(dmchannel =>
 					dmchannel
-						.send("Please reply with your Drexel E-Mail for Verification")
+						.send("Please reply with your" + config.NAME+ "E-Mail for Verification")
 						.catch(reason => console.log(reason))
 				)
 				.catch(reason => console.log(reason));
@@ -373,7 +320,7 @@ client.on("message", message => {
 
 /* 
     VERIFICATION EMAIL
-    - This uses nodelastic to send email using the Elastic Email API
+    - This uses nodelastic to send email using the SendGrid API.
 */
 
 sendEmail = (email_address, code) =>
@@ -382,9 +329,7 @@ sendEmail = (email_address, code) =>
 		subject: config.EMAIL_SUBJECT,
 		to: email_address,
 		html:
-			'<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"> <head> <title></title> <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> <meta name="viewport" content="width=device-width"> <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> <style type="text/css">body, html{margin: 0px; padding: 0px; -webkit-font-smoothing: antialiased; text-size-adjust: none; width: 100% !important;}table td, table{}#outlook a{padding: 0px;}.ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div{line-height: 100%;}.ExternalClass{width: 100%;}@media only screen and (max-width: 480px){table, table tr td, table td{width: 100% !important;}img{width: inherit;}.layer_2{max-width: 100% !important;}.edsocialfollowcontainer table{max-width: 25% !important;}.edsocialfollowcontainer table td{padding: 10px !important;}.edsocialfollowcontainer table{max-width: 25% !important;}.edsocialfollowcontainer table td{padding: 10px !important;}}</style> <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,600i,700,700i &subset=cyrillic,latin-ext" data-name="open_sans" rel="stylesheet" type="text/css"> <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/spectrum.min.css"> </head> <body style="padding:0; margin: 0;background: #e4e6ec"> <table style="height: 100%; width: 100%; background-color: #e4e6ec;" align="center"> <tbody> <tr> <td valign="top" id="dbody" data-version="2.31" style="width: 100%; height: 100%; padding-top: 50px; padding-bottom: 50px; background-color: #e4e6ec;"> <table class="layer_1" align="center" border="0" cellpadding="0" cellspacing="0" style="max-width: 600px; box-sizing: border-box; width: 100%; margin: 0px auto;"> <tbody> <tr> <td class="drow" valign="top" align="center" style="background-color: #ffffff; box-sizing: border-box; font-size: 0px; text-align: center;"> <div class="layer_2" style="max-width: 200px; display: inline-block; vertical-align: top; width: 100%;"> <table border="0" cellspacing="0" cellpadding="0" class="edcontent" style="border-collapse: collapse;width:100%"> <tbody> <tr> <td valign="top" class="emptycell" style="padding: 20px;"> </td></tr></tbody> </table> </div><div class="layer_2" style="max-width: 212px; display: inline-block; vertical-align: top; width: 100%;"> <table border="0" cellspacing="0" cellpadding="0" class="edcontent" style="border-collapse: collapse;width:100%"> <tbody> <tr> <td valign="top" class="edimg" style="padding: 20px; box-sizing: border-box; text-align: center;"> <img src="https://api.elasticemail.com/userfile/01e6c1af-b500-4682-9bff-c0693974113a/drexel.gif" alt="Image" width="612" style="border-width: 0px; border-style: none; max-width: 612px; width: 100%;"> </td></tr></tbody> </table> </div><div class="layer_2" style="max-width: 188px; display: inline-block; vertical-align: top; width: 100%;"> <table border="0" cellspacing="0" cellpadding="0" class="edcontent" style="border-collapse: collapse;width:100%"> <tbody> <tr> <td valign="top" class="emptycell" style="padding: 20px;"> </td></tr></tbody> </table> </div></td></tr><tr> <td class="drow" valign="top" align="center" style="background-color: #ffffff; box-sizing: border-box; font-size: 0px; text-align: center;"> <div class="layer_2" style="max-width: 600px; display: inline-block; vertical-align: top; width: 100%;"> <table border="0" cellspacing="0" class="edcontent" style="border-collapse: collapse;width:100%"> <tbody> <tr> <td valign="top" class="edtext" style="padding: 20px; text-align: left; color: #5f5f5f; font-size: 12px; font-family: &quot;Open Sans&quot;, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; word-break: break-word; direction: ltr; box-sizing: border-box;"> <p class="style1 text-center" style="text-align: center; margin: 0px; padding: 0px; color: #000000; font-size: 32px; font-family: &quot;Open Sans&quot;, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif;"> <strong>DREXEL DISCORD </strong> </p></td></tr></tbody> </table> </div></td></tr><tr> <td class="drow" valign="top" align="center" style="background-color: #ffffff; box-sizing: border-box; font-size: 0px; text-align: center;"> <div class="layer_2" style="max-width: 596px; display: inline-block; vertical-align: top; width: 100%;"> <table border="0" cellspacing="0" cellpadding="0" class="edcontent" style="border-collapse: collapse;width:100%"> <tbody> <tr> <td valign="top" class="emptycell" style="padding: 10px;"> </td></tr></tbody> </table> </div></td></tr><tr> <td class="drow" valign="top" align="center" style="background-color: #ffffff; box-sizing: border-box; font-size: 0px; text-align: center;"> <div class="layer_2" style="max-width: 600px; display: inline-block; vertical-align: top; width: 100%;"> <table border="0" cellspacing="0" class="edcontent" style="border-collapse: collapse;width:100%"> <tbody> <tr> <td valign="top" class="edtext" style="padding: 20px; text-align: left; color: #5f5f5f; font-size: 12px; font-family: &quot;Open Sans&quot;, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; word-break: break-word; direction: ltr; box-sizing: border-box;"> <p class="text-center" style="text-align: center; margin: 0px; padding: 0px;">Your verification code is: <strong>' +
-			code +
-			'</strong> </p></td></tr></tbody> </table> </div></td></tr><tr> <td class="drow" valign="top" align="center" style="background-color: #ffffff; box-sizing: border-box; font-size: 0px; text-align: center;"> <div class="layer_2" style="max-width: 596px; display: inline-block; vertical-align: top; width: 100%;"> <table border="0" cellspacing="0" cellpadding="0" class="edcontent" style="border-collapse: collapse;width:100%"> <tbody> <tr> <td valign="top" class="emptycell" style="padding: 10px;"> </td></tr></tbody> </table> </div></td></tr><tr> <td class="drow" valign="top" align="center" style="background-color: #ffffff; box-sizing: border-box; font-size: 0px; text-align: center;"> <div class="layer_2" style="max-width: 600px; display: inline-block; vertical-align: top; width: 100%;"> <table border="0" cellspacing="0" class="edcontent" style="border-collapse: collapse;width:100%"> <tbody> <tr> <td valign="top" class="edbutton" style="padding: 20px;"> <table cellspacing="0" cellpadding="0" style="text-align: center;margin:0 auto;" align="center"> <tbody> <tr> <td align="center" style="border-radius: 4px; padding: 12px; background: #7289da;"> <a href="https://discordapp.com/channels/@me" target="_blank" style="color: #ffffff; font-size: 16px; font-family: &quot;Open Sans&quot;, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-weight: normal; text-decoration: none; display: inline-block;"><span style="color: #ffffff;"><b>OPEN DISCORD</b></span></a></td></tr></tbody> </table> </td></tr></tbody> </table> </div></td></tr></tbody> </table> </td></tr></tbody> </table> </body></html>'
+			config.EMAIL_BODY1 + code + config.EMAIL_BODY2
 	}).then(() => {}, error => {
 		console.log(error)
 	});
