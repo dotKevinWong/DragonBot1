@@ -11,10 +11,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@sendgrid/mail": "^7.0.0",
     "cheerio": "^1.0.0-rc.3",
     "discord.js": "^11.4.2",
     "keyv": "^3.1.0",
     "nightmare": "^3.0.2",
-    "nodelastic": "^1.0.2"
+    "nodelastic": "^1.0.2",
+    "request": "^2.88.2"
   }
 }
