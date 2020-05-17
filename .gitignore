@@ -1,2 +1,4 @@
 /.electron
 database.sqlite
+shrinkwrap.yaml
+.glitch-assets
