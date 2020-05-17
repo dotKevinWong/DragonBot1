@@ -1,0 +1,19 @@
+{
+  "WELCOME_USER_DM": "Welcome to the **Unofficial Drexel University Discord Server!** In <#493535288661114881>, please type !verify to verify yourself! Under <#578369377607352321>, make sure to add your Major and Class Year!",
+  "IMAGE_ARRAY": [
+    "https://i.imgur.com/oJCeden.gif",
+    "https://i.imgur.com/A6AoUYI.gif",
+    "https://i.imgur.com/82FuJgL.gif",
+    "https://i.imgur.com/Hf7gnSt.gif",
+    "https://i.imgur.com/LrBO86i.gif"
+  ],
+  "COMMAND_ARRAY": [
+    "dragonbot",
+    "leaderboard",
+    "max",
+    "membercount",
+    "offtopic",
+    "vibecheck",
+    "yuna"
+  ]
+}
