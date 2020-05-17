@@ -1,5 +1,4 @@
-.DS_STORE
-/node_modules
-config.json
-config.json.dev.json
-config.json.prod.json
+/.electron
+database.sqlite
+shrinkwrap.yaml
+.glitch-assets

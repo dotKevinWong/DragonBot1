@@ -1,22 +1,29 @@
 {
-  "name": "dragonbot",
-  "version": "1.0.0",
-  "description": "",
+  "name": "DragonBot",
+  "version": "1.0.2",
+  "description": "A bot that handles moderation for the Drexel University Discord Server",
   "main": "bot.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npm install . && node bot.js"
+    "start": "node bot.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "@sendgrid/mail": "^7.0.0",
+    "@sendgrid/mail": "^7.1.1",
     "cheerio": "^1.0.0-rc.3",
-    "discord.js": "^11.4.2",
-    "keyv": "^3.1.0",
-    "nightmare": "^3.0.2",
-    "nodelastic": "^1.0.2",
-    "request": "^2.88.2"
-  }
+    "discord.js": "^11.6.4",
+    "keyv": "^4.0.1",
+    "puppeteer": "^3.0.4",
+    "request": "2.88.2"
+  },
+  "engines": {
+    "node": "12.x"
+  },
+  "repository": {
+    "url": "https://glitch.com/edit/#!/hello-express"
+  },
+  "license": "MIT",
+  "keywords": [
+    "node",
+    "glitch",
+    "express"
+  ]
 }
