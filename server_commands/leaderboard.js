@@ -2,6 +2,9 @@
     LEADERBOARD
     - Uses Request and the MEE6 API to print out the top members of the server
 */
+
+const request = require("request");
+
 const dict = {
   0: ":crown:",
   1: ":second_place:",
@@ -25,10 +28,10 @@ const dict = {
   19: ":two::zero:"
 };
 
-exports.run = (discord, client, message, config, jsonconfig, request, args) => {
-  if (message.channel.id === config.VERIFICATION_CHANNEL_ID) {
+exports.run = (discord, client, db, message, args, discord_email, code_email_temp, code_discord_temp) => {
+  if (message.channel.id === process.env.VERIFICATION_CHANNEL_ID) {
     request(
-      "https://mee6.xyz/api/plugins/levels/leaderboard/" + config.SERVER_ID,
+      "https://mee6.xyz/api/plugins/levels/leaderboard/" + process.env.SERVER_ID,
       function(error, response, body) {
         var data = JSON.parse(body);
         let max =
@@ -41,15 +44,15 @@ exports.run = (discord, client, message, config, jsonconfig, request, args) => {
             : 10;
         let count = 0;
         /* Add functionality to flexible amount of users */
-        const rankEmbed = new discord.RichEmbed()
+        const rankEmbed = new discord.MessageEmbed()
           .setColor("0099ff")
           .setTitle("Top Members")
-          .setURL(config.MEE6_LEADERBOARD_URL)
-          .setDescription(config.MEE6_LEADERBOARD_DESCRIPTION);
+          .setURL(process.env.MEE6_LEADERBOARD_URL)
+          .setDescription(process.env.MEE6_LEADERBOARD_DESCRIPTION);
         while (count < max) {
           rankEmbed.addField(
             dict[count],
-            message.guild.members.get(data.players[count].id) +
+            "<@" + message.guild.members.cache.get(data.players[count].id) + ">" +
               " | " +
               data.players[count].message_count +
               " Messages" +
