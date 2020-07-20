@@ -1,5 +1,6 @@
 {
-  "WELCOME_USER_DM": "Welcome to the **Unofficial Drexel University Discord Server!** In <#493535288661114881>, please type !verify to verify yourself! Under <#578369377607352321>, make sure to add your Major and Class Year!",
+  "WELCOME_USER_DM": "Welcome to the unofficial Drexel University Discord!\n\nA few things:\n- Review the server rules on the <#571397464565874718>\n- Add roles via <#578369377607352321>\n- Verify your Drexel email via <#493535288661114881> to get special perks\n\nAlso, don't forget to say hi in the <#575488601165529088> channel!",
+  "PROFILE_DM_ERROR": "Want to setup a user profile on this server? You can add snippets of information about yourself - like name, major, clubs, and more! To get started, call the !setup-profile command in <#493535288661114881> to see all the available options and bot syntax.\n\nPlease note - all profile changes must be performed in this direct message",
   "IMAGE_ARRAY": [
     "https://i.imgur.com/oJCeden.gif",
     "https://i.imgur.com/A6AoUYI.gif",
@@ -7,13 +8,34 @@
     "https://i.imgur.com/Hf7gnSt.gif",
     "https://i.imgur.com/LrBO86i.gif"
   ],
-  "COMMAND_ARRAY": [
+  "NO_HORNY_ARRAY": [
+    "https://cdn.glitch.com/973e6945-35b5-4b0f-95e2-7550174c12c8%2Fimage0.png",
+    "https://cdn.glitch.com/973e6945-35b5-4b0f-95e2-7550174c12c8%2Ffetchimage.png?v=1594867202867",
+    "https://cdn.glitch.com/973e6945-35b5-4b0f-95e2-7550174c12c8%2FEXND0NgUMAAVaZW.png?v=1594867204069",
+    "https://cdn.glitch.com/973e6945-35b5-4b0f-95e2-7550174c12c8%2Fafa.png?v=1594867207948",
+    "https://cdn.glitch.com/973e6945-35b5-4b0f-95e2-7550174c12c8%2FaN7qD3Zp_700w_0.png?v=1594867209074",
+    "https://cdn.glitch.com/973e6945-35b5-4b0f-95e2-7550174c12c8%2FHorny_5de442_7668585.png?v=1594867409532"
+  ],
+  "SERVER_COMMAND_ARRAY": [
+    "club",
     "dragonbot",
     "leaderboard",
-    "max",
     "membercount",
+    "mset",
     "offtopic",
+    "setup-profile",
+    "verify",
     "vibecheck",
-    "yuna"
+    "whois",
+    "yuna",
+    "givephone",
+    "nohorny",
+    "roll"
+  ],
+  "DM_COMMAND_ARRAY": [
+    "code",
+    "email",
+    "set",
+    "whois"
   ]
 }

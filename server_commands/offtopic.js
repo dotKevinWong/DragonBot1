@@ -3,16 +3,18 @@
     - This pulls from an array of images and return to the chat a custom off-topic messsage.
 */
 
-exports.run = (discord, client, message, config, jsonconfig, request, args) => {
+const config = require("../config.json");
+
+exports.run = (discord, client, db, message, args, discord_email, code_email_temp, code_discord_temp) => {
   message.channel.send({
     embed: {
       color: 16777215,
       title: "The Conversation is Off-Topic",
-      description: config.OFFTOPIC_DESCRIPTION,
+      description: process.env.OFFTOPIC_DESCRIPTION,
       image: {
         url:
-          jsonconfig.IMAGE_ARRAY[
-            Math.floor(Math.random() * jsonconfig.IMAGE_ARRAY.length)
+          config.IMAGE_ARRAY[
+            Math.floor(Math.random() * config.IMAGE_ARRAY.length)
           ]
       },
       footer: {
