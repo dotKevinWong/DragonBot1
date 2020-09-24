@@ -12,7 +12,7 @@
     "discord.js": "^12.2.0",
     "keyv": "^4.0.1",
     "@keyv/sqlite": "2.0.2",
-    "puppeteer": "^5.2.0",
+    "puppeteer": "^5.2.1",
     "request": "2.88.2",
     "firebase-admin": "^9.0.0"
   },

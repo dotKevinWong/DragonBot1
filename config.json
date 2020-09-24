@@ -14,11 +14,21 @@
     "https://cdn.glitch.com/973e6945-35b5-4b0f-95e2-7550174c12c8%2FEXND0NgUMAAVaZW.png?v=1594867204069",
     "https://cdn.glitch.com/973e6945-35b5-4b0f-95e2-7550174c12c8%2Fafa.png?v=1594867207948",
     "https://cdn.glitch.com/973e6945-35b5-4b0f-95e2-7550174c12c8%2FaN7qD3Zp_700w_0.png?v=1594867209074",
-    "https://cdn.glitch.com/973e6945-35b5-4b0f-95e2-7550174c12c8%2FHorny_5de442_7668585.png?v=1594867409532"
+    "https://cdn.glitch.com/973e6945-35b5-4b0f-95e2-7550174c12c8%2FHorny_5de442_7668585.png?v=1594867409532",
+    "https://cdn.glitch.com/973e6945-35b5-4b0f-95e2-7550174c12c8%2F20200717_171738.jpg?v=1595383172346",
+    "https://cdn.glitch.com/973e6945-35b5-4b0f-95e2-7550174c12c8%2Fimage0.jpg?v=1599136643440",
+    "https://cdn.glitch.com/973e6945-35b5-4b0f-95e2-7550174c12c8%2Fjon_bonk.jpg?v=1600613169219",
+    "https://cdn.glitch.com/973e6945-35b5-4b0f-95e2-7550174c12c8%2F1fdfb97.png?v=1600613170620",
+    "https://cdn.glitch.com/973e6945-35b5-4b0f-95e2-7550174c12c8%2F8db5d01.png?v=1600825205529"
+  ],
+  "HORNY_ARRAY": [
+    "https://cdn.glitch.com/973e6945-35b5-4b0f-95e2-7550174c12c8%2Fdr57iy0lnur41.jpg?v=1599136632870",
+    "https://cdn.glitch.com/973e6945-35b5-4b0f-95e2-7550174c12c8%2Fahsyyyzin1e41.webp?v=1598923772501"
   ],
   "SERVER_COMMAND_ARRAY": [
     "club",
     "dragonbot",
+    "help",
     "leaderboard",
     "membercount",
     "mset",
@@ -30,11 +40,13 @@
     "yuna",
     "givephone",
     "nohorny",
+    "horny",
     "roll"
   ],
   "DM_COMMAND_ARRAY": [
     "code",
     "email",
+    "help",
     "set",
     "whois"
   ]

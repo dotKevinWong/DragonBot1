@@ -27,13 +27,11 @@ client.on("ready", () => {
   });
 });
 
-
 // DM new user on join
 client.on("guildMemberAdd", member => {
   member.send(config.WELCOME_USER_DM);
   member.guild.channels.cache.get(process.env.VERIFICATION_CHANNEL_ID).send("Please welcome " + member.user.username +"#" + member.user.discriminator + " ( <@" + member.id + "> ) to the unofficial Drexel University Discord!"); 
 });
-
 
 const discord_email = new Keyv("sqlite://database.sqlite", {
   namespace: "discord_email"
