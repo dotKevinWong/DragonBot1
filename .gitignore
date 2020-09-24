@@ -3,3 +3,4 @@ shrinkwrap.yaml
 .glitch-assets
 serviceKey.json
 database.sqlite
+.DS_Store
