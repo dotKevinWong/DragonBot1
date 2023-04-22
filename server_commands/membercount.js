@@ -3,7 +3,7 @@
     - Returns number of users, bots, and humans from the server.
 */
 
-exports.run = (discord, client, db, message, args, discord_email, code_email_temp, code_discord_temp) => {
+exports.run = (discord, client, db, message, args) => {
   message.channel.send({
     embed: {
       color: 16777215,
@@ -14,14 +14,15 @@ exports.run = (discord, client, db, message, args, discord_email, code_email_tem
           value: message.guild.memberCount
         },
         {
-          name: "Students",
+          name: "Humans",
           value:
             message.channel.guild.memberCount -
             message.channel.guild.members.cache.filter(member => member.user.bot).size
         },
         {
           name: "Verified Students",
-          value: message.channel.guild.roles.cache.get("621512736442023956").members.size
+          value:
+            message.guild.roles.cache.get(process.env.VERIFICATION_ROLE_ID).members.size
         },
         {
           name: "Bots",

@@ -6,14 +6,15 @@
 
 const cheerio = require("cheerio");
 const puppeteer = require("puppeteer");
+const Nightmare = require("nightmare");
 
 exports.run = (discord, client, db, message, args, discord_email, code_email_temp, code_discord_temp) => {
   if (message.channel.id === process.env.CLUB_CHANNEL_ID) {
     const query = args[0] + "%20" + args[1] + "%20";
-    message.channel.send("Fetching...").then(msg => {
-      msg.delete(5000);
-    });
-
+    message.channel.send("Fetching...").then(msg => {msg.delete({ timeout: 5000 });});
+    console.log(query)
+    
+    /*
     async () => {
       const browser = await puppeteer.launch({
         args: ["--no-sandbox"]
@@ -23,21 +24,36 @@ exports.run = (discord, client, db, message, args, discord_email, code_email_tem
         process.env.CAMPUSLABS_URL + "/engage/organizations?query=" + query
       );
 
-      /*
+      */
     const nightmare = Nightmare({ show: false, waitTimeout: 10000 });
     nightmare
-      .goto(config.CAMPUSLABS_URL + "/engage/organizations?query=" + query)
+      /*.goto(process.env.CAMPUSLABS_URL + "/engage/organizations?query=" + query)
       .wait("#org-search-results")
       .evaluate(() => document.querySelector("#org-search-results").innerHTML)
       .end()
       .then(response => {
-        console.log(getData(response));
-      })
-      .catch(err => {
-        console.log(err);
-      });
-      */
-
+        console.log("here");
+        console.log(response);
+      })*/
+    .goto('https://www.google.com/')
+    .type("input[title='Search']", 'ScrapingBee')
+    .click("input[value='Google Search']")
+    .wait('#rso > div:nth-child(1) > div > div > div.r > a')
+    .evaluate(
+      () =>
+        document.querySelector(
+          '#rso > div:nth-child(1) > div > div > div.r > a'
+        ).href
+    )
+    .end()
+    .then((link) => {
+      console.log('Scraping Bee Web Link: ', link)
+    })
+    .catch(err => {
+      console.log(err);
+    });
+      
+/*
       const html = await page.$eval("#org-search-results", e => e.innerHTML);
       let data = [];
       const $ = cheerio.load(html);
@@ -66,6 +82,6 @@ exports.run = (discord, client, db, message, args, discord_email, code_email_tem
         message.channel.send(clubEmbed);
       }
       await browser.close();
-    };
+    };*/
   }
 };

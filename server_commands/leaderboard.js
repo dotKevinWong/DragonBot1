@@ -28,7 +28,7 @@ const dict = {
   19: ":two::zero:"
 };
 
-exports.run = (discord, client, db, message, args, discord_email, code_email_temp, code_discord_temp) => {
+exports.run = (discord, client, db, message, args) => {
   if (message.channel.id === process.env.VERIFICATION_CHANNEL_ID) {
     request(
       "https://mee6.xyz/api/plugins/levels/leaderboard/" + process.env.SERVER_ID,

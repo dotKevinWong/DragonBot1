@@ -5,7 +5,7 @@
 
 const config = require("../config.json");
 
-exports.run = (discord, client, db, message, args, discord_email, code_email_temp, code_discord_temp) => {
+exports.run = (discord, client, db, message, args) => {
   message.channel.send({
     embed: {
       color: 16777215,

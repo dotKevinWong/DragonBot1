@@ -7,10 +7,8 @@ exports.run = (discord, client, db, message, args, discord_email, code_email_tem
   if (text.match(/^[a-zA-Z0-9]{6}$/)){
     Promise.all([code_email_temp.get(text), code_discord_temp.get(text)])
       .then(([email_address, discord_id]) => {
-        if (email_address && discord_id && discord_id === message.author.id) {
-          discord_email.set(message.author.id, email_address);
+        if (email_address && discord_id=== message.author.id) {
           let guild = client.guilds.cache.get(process.env.SERVER_ID);
-          
           let role = guild.roles.cache.find(role => role.name === process.env.ROLE_NAME);
           guild.members.fetch(message.author).then(guildMember =>
               guildMember.roles.add(role.id)

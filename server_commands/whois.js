@@ -1,6 +1,6 @@
-var min = 5;
+var min = .25;
 
-exports.run = (discord, client, db, message, args, discord_email, code_email_temp, code_discord_temp) => {
+exports.run = (discord, client, db, message, args) => {
 //let userID = args[0].slice(3, -1)
 let userID = args[0].split("@")[1];
 if (userID.charAt(0) === "!")

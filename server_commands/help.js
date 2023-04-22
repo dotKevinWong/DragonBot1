@@ -49,6 +49,7 @@ exports.run = (discord, client, db, message, args, discord_email, code_email_tem
     .addField("``!leaderboard (optional #)``", "Pull up the Server's Mee6 EXP Leaderboard.\n# can be any non-zero number less than 20. Default is 10\n\u200B")
     .addField("``!membercount``", "Pull up the number of Users, Bots and verified Students/Alumni in the Server.\n\u200B")
     .addField("``!setup-profile``", "Start the process to create and fill your Server Profile.\n\u200B")
+    .addField("``!suggest``", "Suggest a feature for the server! DragonBot will DM you for more information about your suggestion.\n\u200B")
     .addField("``!verify``", "Start the verification process. Expect a DM from our very own DragonBot!\n\u200B")
     .addField("``!whois (optional @user)``", "Show the profile of the user you mentioned.\nWith no argument, your profile is shown.\nProfile Showings have a cool-down of 3 minutes in the Server, but you can pull your own Profile as much as you like in your DM with DragonBot.")
     

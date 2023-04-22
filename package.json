@@ -7,14 +7,14 @@
     "start": "node bot.js"
   },
   "dependencies": {
-    "@sendgrid/mail": "^7.2.1",
+    "@sendgrid/mail": "^7.4.2",
     "cheerio": "^1.0.0-rc.3",
-    "discord.js": "^12.2.0",
-    "keyv": "^4.0.1",
+    "discord.js": "^12.5.2",
+    "keyv": "^4.0.3",
     "@keyv/sqlite": "2.0.2",
-    "puppeteer": "^5.2.1",
+    "puppeteer": "^8.0.0",
     "request": "2.88.2",
-    "firebase-admin": "^9.0.0"
+    "firebase-admin": "^9.7.0"
   },
   "engines": {
     "node": "12.x"

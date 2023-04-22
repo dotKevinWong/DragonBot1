@@ -10,8 +10,9 @@ const config_env =
 
 const config = require("./config.json");
 
-admin.initializeApp({credential: admin.credential.cert(serviceAccount)});
+admin.initializeApp({credential: admin.credential.cert(serviceAccount), storageBucket: "drexel-discord.appspot.com/"});
 let db = admin.firestore();
+var bucket = admin.storage().bucket();
 
 // intalize discord
 const client = new discord.Client();
@@ -32,6 +33,7 @@ client.on("guildMemberAdd", member => {
   member.send(config.WELCOME_USER_DM);
   member.guild.channels.cache.get(process.env.VERIFICATION_CHANNEL_ID).send("Please welcome " + member.user.username +"#" + member.user.discriminator + " ( <@" + member.id + "> ) to the unofficial Drexel University Discord!"); 
 });
+
 
 const discord_email = new Keyv("sqlite://database.sqlite", {
   namespace: "discord_email"
@@ -55,6 +57,8 @@ client.on("message", message => {
   if (message.author.bot) {
     return;
   }
+  
+  // Command
   if (message.content.charAt(0) == process.env.PREFIX) {
     const args = message.content.slice(process.env.PREFIX.length).split(" ");
     const command = args.shift().toLowerCase();
@@ -105,6 +109,29 @@ client.on("message", message => {
       message.channel
         .send("Send '!verify' to access other channels")
         .catch(reason => console.log(reason));
+    }
+  }
+  
+  // Adds introductions role if message is sent in #introductions
+  if (message.channel.id === process.env.INTRODUCTIONS_ID){
+    if(message.content.length < 7) {
+         message.author
+      .createDM()
+      .then(dmchannel =>
+        dmchannel
+          .send(
+            "Try sending a longer introduction. Thanks!"
+          )
+          .catch(reason => console.log(reason))
+      )
+      .catch(reason => console.log(reason));
+      message.delete({ timeout: 1000 });
+    } else {
+    let role = message.channel.guild.roles.cache.find(role => role.name === 'Introduced');
+    message.channel.guild.members.fetch(message.author).then(guildMember =>
+      guildMember.roles.add(role.id)
+    )
+    .catch(reason => console.log(reason));
     }
   }
 });

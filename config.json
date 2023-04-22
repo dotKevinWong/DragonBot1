@@ -25,6 +25,17 @@
     "https://cdn.glitch.com/973e6945-35b5-4b0f-95e2-7550174c12c8%2Fdr57iy0lnur41.jpg?v=1599136632870",
     "https://cdn.glitch.com/973e6945-35b5-4b0f-95e2-7550174c12c8%2Fahsyyyzin1e41.webp?v=1598923772501"
   ],
+  "NFT_ARRAY": [
+    "https://firebasestorage.googleapis.com/v0/b/drexel-discord.appspot.com/o/nfts%2F2ggxkafbuz981.png?alt=media&token=70b4189e-040a-4504-bb01-fec412c72175",
+    "https://firebasestorage.googleapis.com/v0/b/drexel-discord.appspot.com/o/nfts%2Fl6aqozlduz981.png?alt=media&token=21deaa4d-9b8a-487c-aa4c-88bc52c655e2",
+    "https://firebasestorage.googleapis.com/v0/b/drexel-discord.appspot.com/o/nfts%2Fn9jchoacuz981.png?alt=media&token=d8c48f1f-3274-4fd9-965f-e2d6942d6792",
+    "https://firebasestorage.googleapis.com/v0/b/drexel-discord.appspot.com/o/nfts%2Fnsy3ml2duz981.png?alt=media&token=197594ba-0752-409a-8042-a365a5d12329",
+    "https://firebasestorage.googleapis.com/v0/b/drexel-discord.appspot.com/o/nfts%2Fodhpl9dduz981.png?alt=media&token=96c7ae07-fd25-4aa1-9a5a-7d2a018c64b6",
+    "https://firebasestorage.googleapis.com/v0/b/drexel-discord.appspot.com/o/nfts%2Fsyzkm0tduz981.png?alt=media&token=af4c0ed2-21d1-4714-b419-21968354bdad",
+    "https://firebasestorage.googleapis.com/v0/b/drexel-discord.appspot.com/o/nfts%2Fv9q4nqrcuz981.png?alt=media&token=cb4bf453-3d16-4c5b-a6dd-915b05da7ab3",
+    "https://firebasestorage.googleapis.com/v0/b/drexel-discord.appspot.com/o/nfts%2Fvpwsuzjcuz981.png?alt=media&token=7c100a53-3a04-4b1f-8f92-8d157a093e52",
+    "https://firebasestorage.googleapis.com/v0/b/drexel-discord.appspot.com/o/nfts%2Fzejjx39euz981.png?alt=media&token=3c87cd9b-82c5-48fc-b714-a61052d4efec"
+  ],
   "SERVER_COMMAND_ARRAY": [
     "club",
     "dragonbot",
@@ -41,13 +52,17 @@
     "givephone",
     "nohorny",
     "horny",
-    "roll"
+    "roll",
+    "suggest",
+    "modtalk",
+    "nft"
   ],
   "DM_COMMAND_ARRAY": [
     "code",
     "email",
     "help",
     "set",
-    "whois"
+    "whois",
+    "suggest"
   ]
 }

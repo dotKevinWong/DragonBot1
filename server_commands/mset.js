@@ -1,4 +1,4 @@
-exports.run = (discord, client, db, message, args, discord_email, code_email_temp, code_discord_temp) => {
+exports.run = (discord, client, db, message, args) => {
   const instructEmbed = new discord.MessageEmbed()
     .setColor("0099ff")
     .setTitle("Moderator Profile Options\nEnter a User ID and Choose from the following profile fields")
